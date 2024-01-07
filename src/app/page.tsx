@@ -32,9 +32,9 @@ export default function App() {
   function showHierarchy() {
     const CEOLocal = getItem(CEOStorage);
     if(CEOLocal) 
-      changeScreen(hierarchy);
+      changeScreen(hierarchy, null);
     else 
-      changeScreen(ceoPage)
+      changeScreen(ceoPage, null)
   }
   switch (screen) {
     case hierarchy:

@@ -3,7 +3,7 @@ import { DepartmentStorage, hierarchy } from "../constants";
 import { getItem, setItem } from "../service/storageService";
 import "../styles.css";
 
-export default function AddDepartment({ changeScreen }) {
+export default function AddDepartment({ changeScreen }: { changeScreen: any; }) {
   const [name, setName] = useState("");
   function setDeptName(event) {
     setName(event.target.value);
@@ -23,7 +23,7 @@ export default function AddDepartment({ changeScreen }) {
           value={name}
           type="text"
           className="input"
-          maxLength="25"
+          maxLength={25}
           placeholder="name"
           onChange={setDeptName}
           name="name"

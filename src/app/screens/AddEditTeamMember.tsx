@@ -27,14 +27,14 @@ export default function AddEditTeamMember({ changeScreen, data }) {
         setLead(data.lead);
         setID(data.id);
       }
-    }, []);
+    }, [data]);
   
   useEffect(
     () => {
         const filteredTeams = teams?.filter((team: { departmentId: Number; }) => team.departmentId == department);
         setDepartmentTeams(filteredTeams);
         setTeam(filteredTeams?.[0].id || 0)
-    }, [department])
+    }, [department, teams])
     
   function setEmpName(event) {
     setName(event.target.value);
@@ -125,7 +125,7 @@ export default function AddEditTeamMember({ changeScreen, data }) {
           value={name}
           type="text"
           className="input"
-          maxLength="25"
+          maxLength={25}
           placeholder="name"
           onChange={setEmpName}
           name="name"
@@ -137,7 +137,7 @@ export default function AddEditTeamMember({ changeScreen, data }) {
           value={phone}
           type="text"
           className="input"
-          maxLength="25"
+          maxLength={25}
           placeholder="phone"
           onChange={setEmpPhone}
           name="phone"
@@ -149,7 +149,7 @@ export default function AddEditTeamMember({ changeScreen, data }) {
           value={email}
           type="text"
           className="input"
-          maxLength="25"
+          maxLength={25}
           placeholder="email"
           onChange={setEmpEmail}
           name="email"

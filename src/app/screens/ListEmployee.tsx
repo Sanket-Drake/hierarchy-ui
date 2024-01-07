@@ -3,60 +3,59 @@ import { EmployeeStorage, hierarchy } from "../constants";
 import { getItem } from "../service/storageService";
 import "../styles.css";
 
-export default function ListEmployee({changeScreen}) {
+export default function ListEmployee({changeScreen}: { changeScreen: any; }) {
   const employees = JSON.parse(getItem(EmployeeStorage));
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState();
   const [filters, setFilters] = useState({
-    name: undefined,
-    phone: undefined,
-    email: undefined
+    name: '',
+    phone: '',
+    email: ''
   });
   const [filteredEmployees, setFilteredEmployees] = useState(employees);
-  function setEmpName(event) {
+  function setEmpName(event: { target: { value: any; }; }) {
     setName(event.target.value);
     if (event.target.value) {
       setFilters({ ...filters, name: event.target.value });
     } else {
-      setFilters({ ...filters, name: undefined });
+      setFilters({ ...filters, name: '' });
     }
   }
 
   function resetFilters() {
     setFilters({
-      name: undefined,
-      phone: undefined,
-      email: undefined
+      name: '',
+      phone: '',
+      email: ''
     })
     setEmail('');
-    setPhone(0);
+    setPhone('');
     setName('');
   }
 
-  function setEmpEmail(event) {
+  function setEmpEmail(event: { target: { value: any; }; }) {
     setEmail(event.target.value);
     if (event.target.value) {
       setFilters({ ...filters, email: event.target.value });
     } else {
-      setFilters({ ...filters, email: undefined });
+      setFilters({ ...filters, email: '' });
     }
   }
 
-  function setEmpPhone(event) {
+  function setEmpPhone(event: { target: { value: any; }; }) {
     setPhone(event.target.value);
     if (event.target.value) {
       setFilters({ ...filters, phone: event.target.value });
     } else {
-      setFilters({ ...filters, phone: undefined });
+      setFilters({ ...filters, phone: '' });
     }
   }
 
   useEffect(() => {
-
     const users = employees?.filter(function (item: { [x: string]: any; }) {
       for (var key in filters) {
-        if (filters[key] !== undefined) {
+        if (filters[key] !== '') {
           if ((key == 'name' || key == 'email' || key == 'phone') && (String(item[key].toLowerCase()).search(filters[key].toLowerCase()) >= 0)) {
             return true;
           }
@@ -64,11 +63,8 @@ export default function ListEmployee({changeScreen}) {
         }
       }
     });
-
-    console.log(users);
-    
     setFilteredEmployees(users);
-  }, [filters])
+  }, [filters, employees])
 
   return (
     <div className="App">
@@ -88,7 +84,7 @@ export default function ListEmployee({changeScreen}) {
               type="text"
               className="input"
               autoComplete="nope"
-              maxLength="25"
+              maxLength={25}
               placeholder="name"
               onChange={setEmpName}
               name="name"
@@ -116,7 +112,7 @@ export default function ListEmployee({changeScreen}) {
               type="text"
               className="input"
               autoComplete="nope"
-              maxLength="25"
+              maxLength={25}
               placeholder="phone"
               onChange={setEmpPhone}
               name="phone"
@@ -128,15 +124,15 @@ export default function ListEmployee({changeScreen}) {
               type="text"
               className="input"
               autoComplete="nope"
-              maxLength="25"
+              maxLength={25}
               placeholder="email"
               onChange={setEmpEmail}
               name="email"
             />
           </th>
         </tr>
-        {filteredEmployees.map((employee: { name: string; lead: boolean; phone: number; email: string; department: number; team: number; }) => (
-          <tr>
+        {filteredEmployees.map((employee: { id: number; name: string; lead: boolean; phone: number; email: string; department: number; team: number; }) => (
+          <tr key={employee.id}>
             <td>{employee.name}</td>
             <td>{employee.department}</td>
             <td>{employee.team}</td>

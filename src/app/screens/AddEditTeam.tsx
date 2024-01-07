@@ -14,7 +14,7 @@ export default function AddEditTeam({ changeScreen, data }) {
       if (data && Object.keys(data).length !== 0) {
         setName(data.name);
       }
-    }, []);
+    }, [data]);
 
   function setTeamName(event: { target: { value: SetStateAction<string>; }; }) {
     setName(event.target.value);
@@ -42,7 +42,7 @@ export default function AddEditTeam({ changeScreen, data }) {
           value={name}
           type="text"
           className="input"
-          maxLength="25"
+          maxLength={25}
           placeholder="name"
           onChange={setTeamName}
           name="name"

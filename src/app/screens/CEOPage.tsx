@@ -20,7 +20,7 @@ export default function CEOPage({changeScreen}: { changeScreen: any; }) {
             value={CEO}
             type="text"
             className="input"
-            maxLength="25"
+            maxLength={25}
             placeholder="CEO"
             onChange={changeCEO}
             name="name"
