@@ -1,0 +1,39 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+    background-color: white;
+    color: black;
+  }
+  .error {
+    color: red;
+  }
+  .primary-button {
+    color: black;
+    background-color: gray;
+    border: 1px solid black;
+    padding: 10px 20px;
+    margin: 10px 20px;
+  }
+
+  .edit-button {
+    color: black;
+    background-color: gray;
+    border: 1px solid black;
+    padding: 0px 5px;
+    border-radius: 5px;
+  }
+
+  input, select {
+    margin: 10px;
+    color: black;
+    border:1px solid black;
+  }
+
+  ul, #myUL {
+    list-style-type: none;
+    padding-inline-start: 40px;
+  }
+
+  table, th, td {
+    border:1px solid black;
+  }
