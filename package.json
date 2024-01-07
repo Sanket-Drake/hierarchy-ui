@@ -2,6 +2,7 @@
   "name": "hierarchy",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sanket-drake.github.io/hierarchy-ui",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
