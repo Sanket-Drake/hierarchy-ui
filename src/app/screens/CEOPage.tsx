@@ -1,5 +1,5 @@
 import { SetStateAction, useState } from "react";
-import { CEOStorage, hierarchy } from "../constants";
+import { CEOStorage, DepartmentStorage, EmployeeStorage, TeamsStorage, hierarchy } from "../constants";
 import { setItem } from "../service/storageService";
 import "../styles.css";
 
@@ -11,6 +11,9 @@ export default function CEOPage({changeScreen}: { changeScreen: any; }) {
   }
   function setLocalCEO() {
     setItem(CEOStorage, CEO);
+    setItem(TeamsStorage, []);
+    setItem(DepartmentStorage, []);
+    setItem(EmployeeStorage, []);
     changeScreen(hierarchy);
   }
   return (
