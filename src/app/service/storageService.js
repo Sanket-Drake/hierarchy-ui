@@ -10,8 +10,9 @@ export function setItem(property, value) {
   
   export function getItem(property) {
     if (process.browser && window.localStorage) {
-      return window.localStorage.getItem(property);
+       const value = window.localStorage.getItem(property);
+       return value || ''
     }
-    return null;
+    return '';
   }
   

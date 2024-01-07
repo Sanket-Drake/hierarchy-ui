@@ -1,9 +1,9 @@
-import { Key, useEffect, useState } from "react";
+import { Key, SetStateAction, useEffect, useState } from "react";
 import { DepartmentStorage, EmployeeStorage, TeamsStorage, hierarchy } from "../constants";
 import "../styles.css";
 import { getItem, setItem } from "../service/storageService";
 
-export default function AddEditTeamMember({ changeScreen, data }) {
+export default function AddEditTeamMember({ changeScreen, data }: { changeScreen: any; data: any}) {
   const departments = JSON.parse(getItem(DepartmentStorage));
   const teams = JSON.parse(getItem(TeamsStorage));
   const [deptTeams, setDepartmentTeams] = useState([]);
@@ -36,18 +36,18 @@ export default function AddEditTeamMember({ changeScreen, data }) {
         setTeam(filteredTeams?.[0].id || 0)
     }, [department, teams])
     
-  function setEmpName(event) {
+  function setEmpName(event: { target: { value: SetStateAction<string>; }; }) {
     setName(event.target.value);
     setError("");
   }
 
-  function setEmpEmail(event) {
+  function setEmpEmail(event: { target: { value: SetStateAction<string>; }; }) {
     setEmail(event.target.value);
     setError("");
   }
 
-  function setEmpPhone(event) {
-    setPhone(event.target.value);
+  function setEmpPhone(event: { target: { value: string; }; }) {
+    setPhone(parseInt(event.target.value));
     setError("");
   }
 
@@ -103,16 +103,16 @@ export default function AddEditTeamMember({ changeScreen, data }) {
     }
   }
 
-  function setEmpDepartment(event: { target: { value: SetStateAction<number>; }; }) {
-    setDepartment(parseInt(event.target.value));
-    const filteredTeams = teams?.filter((team: { departmentId: Number; }) => team.departmentId == event.target.value);
+  function setEmpDepartment(event: { target: { value: string; }; }) {
+    setDepartment(event.target.value);
+    const filteredTeams = teams?.filter((team: { departmentId: Number; }) => team.departmentId == parseInt(event.target.value));
     if(filteredTeams?.length)
         setTeam(parseInt(filteredTeams?.[0].id));
     setError("");
   }
 
-  function setEmpTeam(event: { target: { value: SetStateAction<number>; }; }) {
-    setTeam(parseInt(event.target.value));
+  function setEmpTeam(event: { target: { value: SetStateAction<string>; }; }) {
+    setTeam(event.target.value);
     setError("");
   }
 
@@ -135,7 +135,7 @@ export default function AddEditTeamMember({ changeScreen, data }) {
         <h1>Phone</h1>
         <input
           value={phone}
-          type="text"
+          type="number"
           className="input"
           maxLength={25}
           placeholder="phone"
@@ -158,7 +158,6 @@ export default function AddEditTeamMember({ changeScreen, data }) {
       <div className="Email">
         <label>Team Lead</label>
         <input
-          value={lead}
           checked={lead}
           type="checkbox"
           className="input"
@@ -172,9 +171,9 @@ export default function AddEditTeamMember({ changeScreen, data }) {
           className="form-control department"
           value={department}
           onChange={setEmpDepartment}
-          disabled={ID}
+          disabled={!!ID}
         >
-          {departments?.map((option: { id: Key | readonly string[] | null | undefined; name: any; }) => (
+          {departments?.map((option: { id: number; name: any; }) => (
             <option
               key={option.id}
               value={option.id}
@@ -189,7 +188,7 @@ export default function AddEditTeamMember({ changeScreen, data }) {
           value={team}
           onChange={setEmpTeam}
         >
-          {deptTeams?.map((option: { id: Key | readonly string[] | null | undefined; name: any; }) => (
+          {deptTeams?.map((option: { id: number; name: any; }) => (
             <option
               key={option.id}
               value={option.id}

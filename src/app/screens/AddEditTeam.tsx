@@ -3,7 +3,7 @@ import { DepartmentStorage, TeamsStorage, hierarchy } from "../constants";
 import { getItem, setItem } from "../service/storageService";
 import "../styles.css";
 
-export default function AddEditTeam({ changeScreen, data }) {
+export default function AddEditTeam({ changeScreen, data }: { changeScreen: any; data: any}) {
   const departments = JSON.parse(getItem(DepartmentStorage));
   const [name, setName] = useState("");
   const [errorEntry, setError] = useState("");
@@ -16,11 +16,11 @@ export default function AddEditTeam({ changeScreen, data }) {
       }
     }, [data]);
 
-  function setTeamName(event: { target: { value: SetStateAction<string>; }; }) {
+  function setTeamName(event: { target: { value: string; }; }) {
     setName(event.target.value);
   }
-  function setTeamDepartment(event: { target: { value: SetStateAction<number>; }; }) {
-    setDepartment(parseInt(event.target.value));
+  function setTeamDepartment(event: { target: { value: string; }; }) {
+    setDepartment(event.target.value);
   }
   function addEditTeam() {
     let teams = JSON.parse(getItem(TeamsStorage)) || [];
@@ -54,7 +54,7 @@ export default function AddEditTeam({ changeScreen, data }) {
           value={department}
           onChange={setTeamDepartment}
         >
-          {departments?.map((option: { id: Key | readonly string[] | null | undefined; name: any; }) => (
+          {departments?.map((option: { id: number; name: any; }) => (
             <option
               key={option.id}
               value={option.id}

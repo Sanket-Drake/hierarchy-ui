@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { CEOStorage, hierarchy } from "../constants";
 import { setItem } from "../service/storageService";
 import "../styles.css";
@@ -6,7 +6,7 @@ import "../styles.css";
 export default function CEOPage({changeScreen}: { changeScreen: any; }) {
   const [CEO, setCEO] = useState("");
 
-  function changeCEO(event) {
+  function changeCEO(event: { target: { value: SetStateAction<string>; }; }) {
     setCEO(event.target.value);
   }
   function setLocalCEO() {

@@ -53,7 +53,7 @@ export default function Hierarchy({ changeScreen }: { changeScreen: any; }) {
     const teamLead = filteredMembers?.filter((member: { lead: boolean; }) => member.lead);
     return (
       <li>
-        <h4>{teamObj.name} - Team <span><button className="edit-button" onClick={() => changeScreen(addEditTeamMember, {...team})}>edit</button></span></h4>
+        <h4>{teamObj.name} - Team <span><button className="edit-button" onClick={() => changeScreen(addEditTeamMember, {...teamObj})}>edit</button></span></h4>
         <ul>
         {teamLead?.[0] ? <li><h4>{teamLead?.[0].name} - Team Lead<span><button className="edit-button" onClick={() => changeScreen(addEditTeamMember, {...teamLead?.[0]})}>edit</button><button className="edit-button" onClick={() => removeMember(teamLead)}>remove</button></span></h4></li> : null}
           {filteredNonLeadMembers?.length

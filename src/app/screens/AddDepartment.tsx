@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { DepartmentStorage, hierarchy } from "../constants";
 import { getItem, setItem } from "../service/storageService";
 import "../styles.css";
 
 export default function AddDepartment({ changeScreen }: { changeScreen: any; }) {
   const [name, setName] = useState("");
-  function setDeptName(event) {
+  function setDeptName(event: { target: { value: SetStateAction<string>; }; }) {
     setName(event.target.value);
   }
   function addDept() {

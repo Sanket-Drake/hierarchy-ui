@@ -3,12 +3,18 @@ import { EmployeeStorage, hierarchy } from "../constants";
 import { getItem } from "../service/storageService";
 import "../styles.css";
 
+interface IUser {
+  name: string;
+  phone: string;
+  email: string;
+}
+
 export default function ListEmployee({changeScreen}: { changeScreen: any; }) {
   const employees = JSON.parse(getItem(EmployeeStorage));
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState();
-  const [filters, setFilters] = useState({
+  const [phone, setPhone] = useState("");
+  const [filters, setFilters] = useState<IUser>({
     name: '',
     phone: '',
     email: ''
@@ -54,9 +60,11 @@ export default function ListEmployee({changeScreen}: { changeScreen: any; }) {
 
   useEffect(() => {
     const users = employees?.filter(function (item: { [x: string]: any; }) {
-      for (var key in filters) {
-        if (filters[key] !== '') {
-          if ((key == 'name' || key == 'email' || key == 'phone') && (String(item[key].toLowerCase()).search(filters[key].toLowerCase()) >= 0)) {
+      const keys = Object.keys(filters)
+      const values = Object.values(filters)
+      for (let a = 0;a < keys.length; a++) {
+        if (values[a] !== '') {
+          if ((keys[a] == 'name' || keys[a] == 'email' || keys[a] == 'phone') && (String(item[keys[a]].toLowerCase()).search(values[a].toLowerCase()) >= 0)) {
             return true;
           }
           return false;
@@ -97,14 +105,6 @@ export default function ListEmployee({changeScreen}: { changeScreen: any; }) {
             
           </th>
           <th>
-            {/* <input
-              value={lead}
-              checked={lead}
-              type="checkbox"
-              className="input"
-              onChange={setEmpLead}
-              name="lead"
-            /> */}
           </th>
           <th>
             <input
