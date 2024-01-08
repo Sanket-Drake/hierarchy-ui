@@ -17,7 +17,7 @@ export default function Team({ changeScreen, team, removeMember, type, employees
   const filteredMembers = employees?.filter((member: { team: Number; }) => member.team == team.id);
   const filteredNonLeadMembers = filteredMembers?.filter((member: { lead: boolean; }) => !member.lead);
   const teamLead = filteredMembers?.filter((member: { lead: boolean; }) => member.lead);
-  // console.log('isactive', isActive, canDrop, isOver, type);
+  console.log('isactive', canDrop, isOver, type);
 
   return (
     <div className="employee-box" data-testid="dustbin">

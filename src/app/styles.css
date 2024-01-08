@@ -47,3 +47,8 @@ table, th, td {
   cursor: move;
   float: left;
 }
+
+.df-col{ 
+  display: flex;
+  flex-direction: column;
+}
