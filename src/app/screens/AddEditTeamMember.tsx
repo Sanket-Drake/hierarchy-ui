@@ -34,7 +34,7 @@ export default function AddEditTeamMember({ changeScreen, data }: { changeScreen
         const filteredTeams = teams?.filter((team: { departmentId: Number; }) => team.departmentId == department);
         setDepartmentTeams(filteredTeams);
         setTeam(filteredTeams?.[0]?.id || 0)
-    }, [department, teams])
+    }, [department])
     
   function setEmpName(event: { target: { value: SetStateAction<string>; }; }) {
     setName(event.target.value);
@@ -111,9 +111,9 @@ export default function AddEditTeamMember({ changeScreen, data }: { changeScreen
     setError("");
   }
 
-  function setEmpTeam(event: { target: { value: SetStateAction<string>; }; }) {
+  function setEmpTeam(event: { target: { value: SetStateAction<number>; }; }) {
     setTeam(event.target.value);
-    setError("");
+    // setError("");
   }
 
   return (

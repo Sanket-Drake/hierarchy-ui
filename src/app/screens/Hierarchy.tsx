@@ -5,6 +5,10 @@ import { DepartmentStorage } from "../constants";
 import { addEditTeam } from "../constants";
 import { getItem, setItem } from "../service/storageService";
 import "../styles.css";
+import Employee from "../components/Employee";
+import Team from "../components/Team";
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 export default function Hierarchy({ changeScreen }: { changeScreen: any; }) {
   const CEO = getItem(CEOStorage);
@@ -59,8 +63,9 @@ export default function Hierarchy({ changeScreen }: { changeScreen: any; }) {
       <li>
         <h4>{departmentObj.name} - Department</h4>
         <ul>{filteredTeams?.length
-          ? filteredTeams?.map((team: { id: Number; }) => {
-              return (displayMembers(team))
+          ? filteredTeams?.map((team: { id: Number; department: Number; }) => {
+              // return (displayMembers(team))
+              return <Team employees={employees} removeMember={removeMember} team={team} changeScreen={changeScreen} type={String(team.department)} />
             })
           : null}
           </ul>
@@ -79,7 +84,8 @@ export default function Hierarchy({ changeScreen }: { changeScreen: any; }) {
         {teamLead?.[0] ? <li><h4>{teamLead?.[0].name} - Team Lead<span><button className="edit-button" onClick={() => changeScreen(addEditTeamMember, {...teamLead?.[0]})}>edit</button><button className="edit-button" onClick={() => removeMember(teamLead)}>remove</button></span></h4></li> : null}
           {filteredNonLeadMembers?.length
           ? filteredNonLeadMembers?.map((member: any) => {
-              return displayMember(member);
+              // return displayMember(member);
+              return <Employee removeMember={removeMember} member={member} changeScreen={changeScreen} type={String(member.department)} name={member.name} />
             })
           : null}
           </ul>
@@ -87,16 +93,10 @@ export default function Hierarchy({ changeScreen }: { changeScreen: any; }) {
     );
   }
 
-  function displayMember(member: { name: string; }) {
-    return (
-      <li>
-        <h4>{member.name} - Team member <span><button className="edit-button" onClick={() => changeScreen(addEditTeamMember, {...member})}>edit</button><button className="edit-button" onClick={() => removeMember(member)}>remove</button></span></h4>
-      </li>
-    );
-  }
-
   return (
+    
     <div className="home">
+      <DndProvider backend={HTML5Backend}>
       <div className="hierarchy">
         <h1>Hierarchy</h1>
         <button className="primary-button" onClick={() => changeScreen(addDepartment)}>
@@ -113,6 +113,7 @@ export default function Hierarchy({ changeScreen }: { changeScreen: any; }) {
       {warning?<div className="error">{warning}</div>: null}
       <div className="ceo">CEO {CEO}</div>
       <ul>{displayDepartments()}</ul>
+				</DndProvider>
     </div>
   );
 }

@@ -1,39 +1,49 @@
 .App {
-    font-family: sans-serif;
-    text-align: center;
-    background-color: white;
-    color: black;
-  }
-  .error {
-    color: red;
-  }
-  .primary-button {
-    color: black;
-    background-color: gray;
-    border: 1px solid black;
-    padding: 10px 20px;
-    margin: 10px 20px;
-  }
+  font-family: sans-serif;
+  text-align: center;
+  background-color: white;
+  color: black;
+}
+.error {
+  color: red;
+}
+.primary-button {
+  color: black;
+  background-color: gray;
+  border: 1px solid black;
+  padding: 10px 20px;
+  margin: 10px 20px;
+}
 
-  .edit-button {
-    color: black;
-    background-color: gray;
-    border: 1px solid black;
-    padding: 0px 5px;
-    border-radius: 5px;
-  }
+.edit-button {
+  color: black;
+  background-color: gray;
+  border: 1px solid black;
+  padding: 0px 5px;
+  border-radius: 5px;
+}
 
-  input, select {
-    margin: 10px;
-    color: black;
-    border:1px solid black;
-  }
+input, select {
+  margin: 10px;
+  color: black;
+  border:1px solid black;
+}
 
-  ul, #myUL {
-    list-style-type: none;
-    padding-inline-start: 40px;
-  }
+ul, #myUL {
+  list-style-type: none;
+  padding-inline-start: 40px;
+}
 
-  table, th, td {
-    border:1px solid black;
-  }
+table, th, td {
+  border:1px solid black;
+}
+
+.employee-box {
+  border: '1px dashed gray';
+  background-color: 'white';
+  padding: '0.5rem 1rem';
+  margin-right: '1.5rem';
+  margin-bottom: '1.5rem';
+  cursor: 'move';
+  float: 'left';
+}
