@@ -63,9 +63,9 @@ export default function Hierarchy({ changeScreen }: { changeScreen: any; }) {
       <li>
         <h4>{departmentObj.name} - Department</h4>
         <ul>{filteredTeams?.length
-          ? filteredTeams?.map((team: { id: Number; department: Number; }) => {
+          ? filteredTeams?.map((team: { id: Number; departmentId: Number; }) => {
               // return (displayMembers(team))
-              return <Team employees={employees} removeMember={removeMember} team={team} changeScreen={changeScreen} type={String(team.department)} />
+              return <Team employees={employees} removeMember={removeMember} team={team} changeScreen={changeScreen} type={String(team.departmentId)} />
             })
           : null}
           </ul>

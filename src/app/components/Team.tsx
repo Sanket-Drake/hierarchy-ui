@@ -13,13 +13,14 @@ export default function Team({ changeScreen, team, removeMember, type, employees
       canDrop: monitor.canDrop(),
     }),
   }))
-  const isActive = canDrop && isOver;
+  const isActive = canDrop;
   const filteredMembers = employees?.filter((member: { team: Number; }) => member.team == team.id);
   const filteredNonLeadMembers = filteredMembers?.filter((member: { lead: boolean; }) => !member.lead);
   const teamLead = filteredMembers?.filter((member: { lead: boolean; }) => member.lead);
+  // console.log('isactive', isActive, canDrop, isOver, type);
 
   return (
-    <div className="employee-box" data-testid="box">
+    <div className="employee-box" data-testid="dustbin">
         <li>
         <h4>{team.name} - Team <span><button className="edit-button" onClick={() => changeScreen(addEditTeamMember, {...team})}>edit</button></span></h4>
         <ul>

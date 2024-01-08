@@ -11,7 +11,6 @@ export default function Employee({ changeScreen, member, removeMember, type, nam
     }),
     [name, type]
   );
-  console.log(temp);
   
 
   return (
