@@ -4,7 +4,7 @@ import {  addEditTeamMember } from "../constants";
 import "../styles.css";
 import Employee from "./Employee";
 
-export default function Team({ changeScreen, team, removeMember, type, employees }: { changeScreen: any; team: any; removeMember: any; type: string;  employees: any;}) {
+export default function Team({ changeScreen, team, removeMember, type, employees, key }: { changeScreen: any; team: any; removeMember: any; type: string;  employees: any; key: string;}) {
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
     accept: type,
     drop: () => ({ name: 'Dustbin' }),
@@ -20,7 +20,7 @@ export default function Team({ changeScreen, team, removeMember, type, employees
   console.log('isactive', canDrop, isOver, type);
 
   return (
-    <div className="employee-box" data-testid="dustbin">
+    <div key={key} className="employee-box" data-testid="dustbin">
         <li>
         <h4>{team.name} - Team <span><button className="edit-button" onClick={() => changeScreen(addEditTeamMember, {...team})}>edit</button></span></h4>
         <ul>
@@ -28,7 +28,7 @@ export default function Team({ changeScreen, team, removeMember, type, employees
           {filteredNonLeadMembers?.length
           ? filteredNonLeadMembers?.map((member: any) => {
               // return displayMember(member);
-              return <Employee removeMember={removeMember} member={member} changeScreen={changeScreen} type={String(member.department)} name={member.name} />
+              return <Employee key={String(member.id)} removeMember={removeMember} member={member} changeScreen={changeScreen} type={String(member.department)} name={member.name} />
             })
           : null}
           </ul>
