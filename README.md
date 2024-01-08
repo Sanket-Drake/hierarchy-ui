@@ -1,11 +1,9 @@
 Demo Link - [https://hierarchy-ui-git-main-sanket-drake.vercel.app/](https://hierarchy-ui-git-main-sanket-drake.vercel.app/)
 
-- Departments
-name id
-- Teams
-name id department 
-- Employees
-name id phone email team department lead
+Data Stored to Local Storage in the following table structure
+- Departments - name, id
+- Teams - name, id, department 
+- Employees - name, id, phone, email, team, department, lead
 
 This is a [Next.js](https://nextjs.org/) project.
 
