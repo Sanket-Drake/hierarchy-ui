@@ -13,8 +13,8 @@ export default function AddEditTeamMember({ changeScreen, data }: { changeScreen
   const [ID, setID] = useState(0);
   const [errorEntry, setError] = useState("");
   const [lead, setLead] = useState(false);
-  const [department, setDepartment] = useState(departments?.[0].id || 0);
-  const [team, setTeam] = useState(teams?.[0].id || 0);
+  const [department, setDepartment] = useState(departments?.[0]?.id || 0);
+  const [team, setTeam] = useState(teams?.[0]?.id || 0);
 
   useEffect(
     () => {
@@ -33,7 +33,7 @@ export default function AddEditTeamMember({ changeScreen, data }: { changeScreen
     () => {
         const filteredTeams = teams?.filter((team: { departmentId: Number; }) => team.departmentId == department);
         setDepartmentTeams(filteredTeams);
-        setTeam(filteredTeams?.[0].id || 0)
+        setTeam(filteredTeams?.[0]?.id || 0)
     }, [department, teams])
     
   function setEmpName(event: { target: { value: SetStateAction<string>; }; }) {
@@ -118,9 +118,9 @@ export default function AddEditTeamMember({ changeScreen, data }: { changeScreen
 
   return (
     <div>
-      <button className="primary-button" onClick={() => changeScreen(hierarchy)}>Go Back</button>
+      <h1>Add Employee</h1>
       <div className="Name">
-        <h1>Name</h1>
+        Name: 
         <input
           value={name}
           type="text"
@@ -132,7 +132,7 @@ export default function AddEditTeamMember({ changeScreen, data }: { changeScreen
         />
       </div>
       <div className="Phone">
-        <h1>Phone</h1>
+        Phone: 
         <input
           value={phone}
           type="number"
@@ -144,7 +144,7 @@ export default function AddEditTeamMember({ changeScreen, data }: { changeScreen
         />
       </div>
       <div className="Email">
-        <h1>Email</h1>
+        Email: 
         <input
           value={email}
           type="text"
@@ -198,6 +198,7 @@ export default function AddEditTeamMember({ changeScreen, data }: { changeScreen
       </div>
       {errorEntry !=''? <div className="error">{errorEntry}</div>: ''}
       <button className="primary-button" onClick={() => addEmp()}>Submit</button>
+      <button className="primary-button" onClick={() => changeScreen(hierarchy)}>Cancel</button>
     </div>
   );
 }

@@ -11,8 +11,29 @@ export default function Hierarchy({ changeScreen }: { changeScreen: any; }) {
   const departments = JSON.parse(getItem(DepartmentStorage));
   const teams = JSON.parse(getItem(TeamsStorage));
   // const employees = JSON.parse(getItem(EmployeeStorage));
+  const [warning, setWarning] = useState('');
   const [employees, setEmployees] = useState(JSON.parse(getItem(EmployeeStorage)));
 
+  function goToEmployee() {
+    if (teams?.length)
+      changeScreen(addEditTeamMember)
+    else 
+      setWarning("Add Team first to add employee")
+  }
+
+  function goToTeam() {
+    if (departments?.length)
+      changeScreen(addEditTeam)
+    else 
+      setWarning("Add Department first to add team")
+  }
+
+  function goToList() {
+    if (employees?.length)
+      changeScreen(listEmployee)
+    else 
+      setWarning("Add Employees first to see list")
+  }
 
   function displayDepartments() {
     if (departments?.length)
@@ -81,14 +102,15 @@ export default function Hierarchy({ changeScreen }: { changeScreen: any; }) {
         <button className="primary-button" onClick={() => changeScreen(addDepartment)}>
           Add Department
         </button>
-        <button className="primary-button" onClick={() => changeScreen(addEditTeam)}>Add Team</button>
-        <button className="primary-button" onClick={() => changeScreen(addEditTeamMember)}>
+        <button className="primary-button" onClick={() => goToTeam()}>Add Team</button>
+        <button className="primary-button" onClick={() => goToEmployee()}>
           Add Employee
         </button>
-        <button className="primary-button" onClick={() => changeScreen(listEmployee)}>
+        <button className="primary-button" onClick={() => goToList()}>
           Filter Employees
         </button>
       </div>
+      {warning?<div className="error">{warning}</div>: null}
       <div className="ceo">CEO {CEO}</div>
       <ul>{displayDepartments()}</ul>
     </div>

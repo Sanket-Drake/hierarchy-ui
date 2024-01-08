@@ -7,7 +7,7 @@ export default function AddEditTeam({ changeScreen, data }: { changeScreen: any;
   const departments = JSON.parse(getItem(DepartmentStorage));
   const [name, setName] = useState("");
   const [errorEntry, setError] = useState("");
-  const [department, setDepartment] = useState(departments?.[0].id || 0);
+  const [department, setDepartment] = useState(departments?.[0]?.id || 0);
 
   useEffect(
     () => {
@@ -31,13 +31,13 @@ export default function AddEditTeam({ changeScreen, data }: { changeScreen: any;
       const id = teams.length + 1;
       teams.push({ name, id, departmentId: department });
       setItem(TeamsStorage, teams);
+      setName('');
     }
   }
   return (
     <div>
-      <button className="primary-button" onClick={() => changeScreen(hierarchy)}>Go Back</button>
       <div className="Name">
-        <h1>Name</h1>
+        Name:
         <input
           value={name}
           type="text"
@@ -49,7 +49,7 @@ export default function AddEditTeam({ changeScreen, data }: { changeScreen: any;
         />
       </div>
       <div className="Department">
-        <select
+        Department: <select
           className="form-control department"
           value={department}
           onChange={setTeamDepartment}
@@ -64,6 +64,7 @@ export default function AddEditTeam({ changeScreen, data }: { changeScreen: any;
       </div>
       {errorEntry !=''? <div className="error">{errorEntry}</div>: ''}
       <button className="primary-button" onClick={() => addEditTeam()}>Submit</button>
+      <button className="primary-button" onClick={() => changeScreen(hierarchy)}>Cancel</button>
     </div>
   );
 }
