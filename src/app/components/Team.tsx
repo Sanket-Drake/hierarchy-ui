@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDrop } from 'react-dnd'
-import {  addEditTeamMember } from "../constants";
+import {  addEditTeam, addEditTeamMember } from "../constants";
 import "../styles.css";
 import Employee from "./Employee";
 
@@ -22,7 +22,7 @@ export default function Team({ changeScreen, team, removeMember, type, employees
   return (
     <div key={key} className="employee-box" data-testid="dustbin">
         <li>
-        <h4>{team.name} - Team <span><button className="edit-button" onClick={() => changeScreen(addEditTeamMember, {...team})}>edit</button></span></h4>
+        <h4>{team.name} - Team <span><button className="edit-button" onClick={() => changeScreen(addEditTeam, {...team})}>edit</button></span></h4>
         <ul>
         {teamLead?.[0] ? <li><h4>{teamLead?.[0].name} - Team Lead<span><button className="edit-button" onClick={() => changeScreen(addEditTeamMember, {...teamLead?.[0]})}>edit</button><button className="edit-button" onClick={() => removeMember(teamLead)}>remove</button></span></h4></li> : null}
           {filteredNonLeadMembers?.length
