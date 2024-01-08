@@ -111,8 +111,8 @@ export default function AddEditTeamMember({ changeScreen, data }: { changeScreen
     setError("");
   }
 
-  function setEmpTeam(event: { target: { value: SetStateAction<number>; }; }) {
-    setTeam(event.target.value);
+  function setEmpTeam(event: { target: { value: string; }; }) {
+    setTeam(Number(event.target.value));
     // setError("");
   }
 
