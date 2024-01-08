@@ -65,27 +65,7 @@ export default function Hierarchy({ changeScreen }: { changeScreen: any; }) {
         <ul>{filteredTeams?.length
           ? filteredTeams?.map((team: { id: Number; departmentId: Number; }) => {
               // return (displayMembers(team))
-              return <Team employees={employees} removeMember={removeMember} team={team} changeScreen={changeScreen} type={String(team.departmentId)} />
-            })
-          : null}
-          </ul>
-      </li>
-    );
-  }
-
-  function displayMembers(teamObj: { id: any; name?: any; }) {
-    const filteredMembers = employees?.filter((member: { team: Number; }) => member.team == teamObj.id);
-    const filteredNonLeadMembers = filteredMembers?.filter((member: { lead: boolean; }) => !member.lead);
-    const teamLead = filteredMembers?.filter((member: { lead: boolean; }) => member.lead);
-    return (
-      <li>
-        <h4>{teamObj.name} - Team <span><button className="edit-button" onClick={() => changeScreen(addEditTeamMember, {...teamObj})}>edit</button></span></h4>
-        <ul>
-        {teamLead?.[0] ? <li><h4>{teamLead?.[0].name} - Team Lead<span><button className="edit-button" onClick={() => changeScreen(addEditTeamMember, {...teamLead?.[0]})}>edit</button><button className="edit-button" onClick={() => removeMember(teamLead)}>remove</button></span></h4></li> : null}
-          {filteredNonLeadMembers?.length
-          ? filteredNonLeadMembers?.map((member: any) => {
-              // return displayMember(member);
-              return <Employee removeMember={removeMember} member={member} changeScreen={changeScreen} type={String(member.department)} name={member.name} />
+              return <Team key={String(team.id)} employees={employees} removeMember={removeMember} team={team} changeScreen={changeScreen} type={String(team.departmentId)} />
             })
           : null}
           </ul>
