@@ -234,7 +234,7 @@ const StockList: React.FC<StockListProps> = ({ onBuy }) => {
         value={symbol}
         type="text"
         className="input"
-        placeholder="Stock Symbol"
+        placeholder="Put Stock Symbol(eg. AAPL)"
         onChange={setStockSymbol}
         name="symbol"
       />
