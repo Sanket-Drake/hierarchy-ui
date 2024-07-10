@@ -11,7 +11,7 @@ export function setItem(property, value) {
   export function getItem(property) {
     if (process.browser && window.localStorage) {
        const value = window.localStorage.getItem(property);
-       return value || ''
+       return value || "[]"
     }
     return '';
   }

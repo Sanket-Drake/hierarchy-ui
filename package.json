@@ -1,8 +1,8 @@
 {
-  "name": "hierarchy",
+  "name": "benzinga-project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sanket-drake.github.io/hierarchy-ui",
+  "homepage": "https://sanket-drake.github.io/benzinga-project",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d .next",
