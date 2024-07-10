@@ -207,7 +207,8 @@ const StockList: React.FC<StockListProps> = ({ onBuy }) => {
   }
 
   function setBuyQtyShare(event: { target: { value: string; }; }) {    
-    setBuyQty(parseInt(event.target.value));
+    if (!isNaN(parseInt(event.target.value)) && parseInt(event.target.value)> 0) {setBuyQty(parseInt(event.target.value));}
+    else {setBuyQty(1)}
   }
 
   // Fetch stock data from API (example using a mock API endpoint)
@@ -281,7 +282,9 @@ const Portfolio: React.FC<PortfolioProps> = ({ portfolio, onSell }) => {
   const [sellQty, setSellQty] = useState<number>(1);
 
   function setSetQtyShare(event: { target: { value: string; }; }) {
-    setSellQty(parseInt(event.target.value));
+    if (!isNaN(parseInt(event.target.value)) && parseInt(event.target.value)> 0) {setSellQty(parseInt(event.target.value));}
+    else {setSellQty(1)}
+    
   }
 
   return (
